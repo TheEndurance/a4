@@ -72,6 +72,20 @@ $(document).ready(function () {
     ////////////////////////////////////////////////////////////////////////////
 
     /*
+     *  Remove Product from shopping cart
+     */
+    $("table#shoppingCart tbody").on("click","button.js-remove-product",function(){
+        var productId = $(this).attr('data-product-id');
+        var tableRow = $("table#shoppingCart tbody tr#"+productId);
+        tableRow.fadeOut("slow",function(){
+            tableRow.remove();
+        });
+        ShoppingCart.EmptyProductFromCartById(productId);
+        UpdateGrandTotal();
+    });
+    ////////////////////////////////////////////////////////////////////////////
+
+    /*
      *  Handlebar Templating for Products
      */
     var productSource = $("#product-template").html();
@@ -84,7 +98,7 @@ $(document).ready(function () {
     ////////////////////////////////////////////////////////////////////////////
 
     /*
-     *  Handlebar Templating for Products
+     *  Handlebar Templating for Shopping Cart
      */
     function HandleBarProductTemplate(cartItem) {
         var shoppingCartSource = $("#shopping-cart-template").html();

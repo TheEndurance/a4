@@ -88,17 +88,17 @@ var ShoppingCart = function () {
         }
     }
 
-    var RemoveAllFromCart = function (product) {
+    var EmptyProductFromCartById = function (id) {
         "use strict";
-        if (FindProductIndex(product) != -1) {
-            shoppingCart.splice(FindProductIndex(product), 1);
+        if (FindProductIndexById(id) !==-1) {
+            shoppingCart.splice(FindProductIndexById(id), 1);
         }
     }
     return {
         shoppingCart: shoppingCart,
         AddToCart: AddToCart,
         RemoveFromCart: RemoveFromCart,
-        RemoveAllFromCart: RemoveAllFromCart,
+        EmptyProductFromCartById: EmptyProductFromCartById,
         FindProductIndexById: FindProductIndexById
     }
 
