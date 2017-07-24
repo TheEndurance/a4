@@ -20,9 +20,9 @@ include('includes/header.html');
                     </thead>
                     <tbody>
                         <tr>
-                            <td>   </td>
-                            <td>   </td>
-                            <td>   </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td>
                                 <h3>Total</h3>
                             </td>
@@ -31,17 +31,19 @@ include('includes/header.html');
                             </td>
                         </tr>
                         <tr>
-                            <td>   </td>
-                            <td>   </td>
-                            <td>   </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td>
                                 <button type="button" class="btn btn-default">
-                                            <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                                        </button></td>
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                                </button>
+                            </td>
                             <td>
-                                <button type="button" class="btn btn-success">
-                                            Checkout <span class="glyphicon glyphicon-play"></span>
-                                        </button></td>
+                                <button type="button" class="btn btn-success"> Checkout
+                                    <span class="glyphicon glyphicon-play"></span>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
