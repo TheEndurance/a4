@@ -2,7 +2,7 @@
     <tr>
         <td class="col-sm-6 col-md-6">
             <div class="media">
-                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{{product.image}}}" style="width: 72px; height: 72px;"> </a>
+                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{product.image}}" style="width: 72px; height: 72px;"> </a>
                 <div class="media-body">
                     <h4 class="media-heading"><a href="#">{{product.name}}</a></h4>
                     <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
@@ -13,17 +13,21 @@
             <div class="form-group">
                 <div class="input-group number-spinner">
                     <span class="input-group-btn">
-                                    <a class="btn btn-danger" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></a>
+                        <a class="btn btn-danger js-quantity" data-dir="down" data-product-id="{{product.id}}">
+                            <span class="glyphicon glyphicon-minus"></span>
+                        </a>
                     </span>
-                    <input type="text" disabled name="adult" id="adult" class="form-control text-center" value="{{{quantity}}}" max=9 min=1>
+                    <input type="text" id="quantity-{{product.id}}" class="form-control text-center" value="{{quantity}}" min=1>
                     <span class="input-group-btn">
-                                    <a class="btn btn-info" data-dir="up"><span class="glyphicon glyphicon-plus"></span></a>
+                        <a class="btn btn-info js-quantity" data-dir="up" data-product-id="{{product.id}}">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>
                     </span>
                 </div>
             </div>
         </td>
         <td class="col-sm-1 col-md-1 text-center"><strong>${{product.price}}</strong></td>
-        <td class="col-sm-1 col-md-1 text-center" id="total-price-"+"{{{product.id}}}"><strong>${{multiply product.price quantity}}</strong></td>
+        <td class="col-sm-1 col-md-1 text-center" id="total-price-{{product.id}}"><strong>${{multiply product.price quantity}}</strong></td>
         <td class="col-sm-1 col-md-1">
             <button type="button" class="btn btn-danger">
                 <span class="glyphicon glyphicon-remove"></span>Remove

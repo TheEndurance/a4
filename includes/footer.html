@@ -8,22 +8,61 @@
 <script>
     $(document).ready(function () {
 
+
+        /*
+         * Common functions
+         */
+        function IncrementQuantity(productId) {
+            var quantity = parseInt($("#quantity-" + productId).attr('value'), 10);
+            $("#quantity-" + productId).attr('value', quantity + 1);
+        }
+
+        function DecrementQuantity(productId) {
+            var quantity = parseInt($("#quantity-" + productId).attr('value'), 10);
+            if (quantity > 1) {
+                $("#quantity-" + productId).attr('value', quantity - 1);
+                return true;
+            }
+            return false;
+        }
+        
+        ////////////////////////////////////////////////////////////////////////////
+
         /*
          *  Adding Products to Cart
          */
-
         $("#productsRow").on("click", "button.js-product-add", function () {
             var productId = $(this).attr("data-product-id");
             var cartItem = ShoppingCart.AddToCart(ProductList.GetProductById(productId));
             if (cartItem !== null) { //New product is added to the cart
                 HandleBarProductTemplate(cartItem);
             } else { //its not a new product
-
+                IncrementQuantity(productId);
             }
 
         })
         ////////////////////////////////////////////////////////////////////////////
 
+        /*
+         *  Incrementing / Decrementing Product Quantity
+         */
+        $("#shoppingCartRow").on("click", "a.js-quantity", function () {
+            var productId = $(this).attr("data-product-id");
+            var direction = $(this).attr("data-dir");
+            switch (direction) {
+                case "up":
+                    ShoppingCart.AddToCart(ProductList.GetProductById(productId));
+                    IncrementQuantity(productId);
+                    break;
+                case "down":
+                    if (DecrementQuantity(productId)) {
+                        ShoppingCart.RemoveFromCart(ProductList.GetProductById(productId));
+                    }
+            }
+            console.log(ShoppingCart.shoppingCart);
+
+        })
+        ////////////////////////////////////////////////////////////////////////////
 
         /*
          *  Handlebar Templating for Products
@@ -44,14 +83,18 @@
             var shoppingCartSource = $("#shopping-cart-template").html();
             var shoppingCartTemplate = Handlebars.compile(shoppingCartSource);
             var shoppingCartContext = cartItem;
-            console.log(cartItem);
             var shoppingCartHtml = shoppingCartTemplate(shoppingCartContext);
             $("table#shoppingCart tbody").prepend(shoppingCartHtml);
         }
         ////////////////////////////////////////////////////////////////////////////
+
+        /*
+         *  Handlebar helpers
+         */
         Handlebars.registerHelper("multiply", function (a, b) {
             return a * b;
         });
+        ////////////////////////////////////////////////////////////////////////////
 
     })
 </script>

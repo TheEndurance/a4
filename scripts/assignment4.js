@@ -1,12 +1,11 @@
 var ProductList = function () {
     var productList = new Array();
 
-
-
     var AddProduct = function (product) {
         productList.push(product);
     }
     var GetProductById = function (id) {
+        "use strict";
         for (var i = 0; i < productList.length; i++) {
             if (productList[i].id == id) {
                 return productList[i];
@@ -52,6 +51,7 @@ var ShoppingCart = function () {
 
     //returns -1 if no product is found, otherwise returns the index
     var FindProductIndex = function (product) {
+        "use strict";
         for (var i = 0; i < shoppingCart.length; i++) {
             if (shoppingCart[i].product.id === product.id) {
                 return i;
@@ -60,6 +60,7 @@ var ShoppingCart = function () {
         return -1;
     }
     var FindProductIndexById = function (id) {
+        "use strict";
         for (var i = 0; i < shoppingCart.length; i++) {
             if (shoppingCart[i].product.id == id) {
                 return i;
