@@ -15,17 +15,39 @@
         function IncrementQuantity(productId) {
             var quantity = parseInt($("#quantity-" + productId).attr('value'), 10);
             $("#quantity-" + productId).attr('value', quantity + 1);
+            ShoppingCart.AddToCart(ProductList.GetProductById(productId));
+            UpdateProductTotal(productId, quantity + 1);
+            UpdateGrandTotal();
         }
 
         function DecrementQuantity(productId) {
             var quantity = parseInt($("#quantity-" + productId).attr('value'), 10);
             if (quantity > 1) {
                 $("#quantity-" + productId).attr('value', quantity - 1);
+                ShoppingCart.RemoveFromCart(ProductList.GetProductById(productId));
+                UpdateProductTotal(productId, quantity - 1);
+                UpdateGrandTotal();
                 return true;
             }
             return false;
         }
-        
+
+        function UpdateProductTotal(productId, quantity) {
+            var basePrice = ProductList.GetProductById(productId).price;
+            $("table#shoppingCart #total-price-" + productId).html("<strong>$" + (basePrice * quantity).toFixed(
+                2) + "</strong>");
+        }
+
+        function UpdateGrandTotal() {
+            var total = 0;
+            for (var i = 0; i < ShoppingCart.shoppingCart.length; i++) {
+                var basePrice = ShoppingCart.shoppingCart[i].product.price;
+                var quantity = parseInt(ShoppingCart.shoppingCart[i].quantity);
+                console.log(quantity);
+                total += (basePrice * quantity)
+            }
+            $("table#shoppingCart #grand-total").html("<strong>$" + (total).toFixed(2) + "</strong>")
+        }
         ////////////////////////////////////////////////////////////////////////////
 
         /*
@@ -33,13 +55,13 @@
          */
         $("#productsRow").on("click", "button.js-product-add", function () {
             var productId = $(this).attr("data-product-id");
-            var cartItem = ShoppingCart.AddToCart(ProductList.GetProductById(productId));
-            if (cartItem !== null) { //New product is added to the cart
+            if (ShoppingCart.FindProductIndexById(productId) === -1) {//New product is added to the cart
+                var cartItem = ShoppingCart.AddToCart(ProductList.GetProductById(productId));
+                UpdateGrandTotal();
                 HandleBarProductTemplate(cartItem);
-            } else { //its not a new product
+            } else {  //its not a new product
                 IncrementQuantity(productId);
             }
-
         })
         ////////////////////////////////////////////////////////////////////////////
 
@@ -51,16 +73,13 @@
             var direction = $(this).attr("data-dir");
             switch (direction) {
                 case "up":
-                    ShoppingCart.AddToCart(ProductList.GetProductById(productId));
                     IncrementQuantity(productId);
                     break;
                 case "down":
-                    if (DecrementQuantity(productId)) {
-                        ShoppingCart.RemoveFromCart(ProductList.GetProductById(productId));
-                    }
-            }
-            console.log(ShoppingCart.shoppingCart);
+                    DecrementQuantity(productId)
+                    console.log(ShoppingCart.shoppingCart);
 
+            }
         })
         ////////////////////////////////////////////////////////////////////////////
 
