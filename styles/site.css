@@ -2,6 +2,13 @@
 .navbar {
     border-radius: 0px !important;
 }
+.media-body{
+    padding-left:5px !important;
+}
+.form-control{
+    display:block !important;
+    width:100% !important;
+}
 /*Site css  */
 
 .panel.panel--styled {

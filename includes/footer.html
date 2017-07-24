@@ -1,35 +1,60 @@
+<script src="scripts/assignment4.js">
+</script>
+<script src="scripts/handlebars-v4.0.10.js"></script>
+<script src="scripts/jquery-3.2.1.min.js"></script>
+<script src="scripts/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 
-    <script src="scripts/assignment4.js"></script>
-    <script src="scripts/handlebars-v4.0.10.js"></script>
-    <script src="scripts/jquery-3.2.1.min.js"></script>
-    <script src="scripts/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 
-    
-    <script>
-        $(document).ready(function(){
-        
-            /*
-            *  Handlebar Templating for Products
-            */
-            var productSource = $("#product-template").html();
-            var productTemplate = Handlebars.compile(productSource);
-            var productContext = {product : productList};
-            var productHtml = template(productContext);
-            $("#productsRow").append(productHtml);
-            ////////////////////////////////////////////////////////////////////////////
+<script>
+    $(document).ready(function () {
 
-            /*
-            *  Handlebar Templating for Products
-            */
-            var shoppingCartSource = $("#shopping-cart-template").html();
-            var shoppingCartTemplate = Handlebars.compile(shoppingCartSource);
-            var shoppingCartContext = {shoppingCart : ShoppingCart.shoppingCart};
-            var shoppingCartHtml = template(shoppingCartContext);
-            $("#shoppingCartRow").append(shoppingCartHtml);
-            ////////////////////////////////////////////////////////////////////////////
+        /*
+         *  Adding Products to Cart
+         */
 
+        $("#productsRow").on("click", "button.js-product-add", function () {
+            var productId = $(this).attr("data-product-id");
+            var cartItem = ShoppingCart.AddToCart(ProductList.GetProductById(productId));
+            if (cartItem !== null) { //New product is added to the cart
+                HandleBarProductTemplate(cartItem);
+            } else { //its not a new product
+
+            }
 
         })
-    </script>
-    </body>
+        ////////////////////////////////////////////////////////////////////////////
+
+
+        /*
+         *  Handlebar Templating for Products
+         */
+        var productSource = $("#product-template").html();
+        var productTemplate = Handlebars.compile(productSource);
+        var productContext = {
+            product: ProductList.productList
+        };
+        var productHtml = productTemplate(productContext);
+        $("#productsRow").append(productHtml);
+        ////////////////////////////////////////////////////////////////////////////
+
+        /*
+         *  Handlebar Templating for Products
+         */
+        function HandleBarProductTemplate(cartItem) {
+            var shoppingCartSource = $("#shopping-cart-template").html();
+            var shoppingCartTemplate = Handlebars.compile(shoppingCartSource);
+            var shoppingCartContext = cartItem;
+            console.log(cartItem);
+            var shoppingCartHtml = shoppingCartTemplate(shoppingCartContext);
+            $("table#shoppingCart tbody").prepend(shoppingCartHtml);
+        }
+        ////////////////////////////////////////////////////////////////////////////
+        Handlebars.registerHelper("multiply", function (a, b) {
+            return a * b;
+        });
+
+    })
+</script>
+</body>
+
 </html>
