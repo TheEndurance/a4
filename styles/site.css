@@ -1,3 +1,9 @@
+/* bootstrap override */
+.navbar {
+    border-radius: 0px !important;
+}
+/*Site css  */
+
 .panel.panel--styled {
     background: #F4F2F3;
 }
