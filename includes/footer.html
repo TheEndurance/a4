@@ -1,33 +1,4 @@
 
-    <script id="product-template" type="text/x-handlebars-template">
-        {{#each product}}
-        <div id="{{id}}" class="row">
-            <div class="col-md-10">
-                <div class="panel panel-default  panel--styled">
-                    <div class="panel-body">
-                        <div class="col-md-12 panelTop">
-                            <div class="col-md-4">
-                                <img class="img-responsive" src="{{{image}}}" alt="" />
-                            </div>
-                            <div class="col-md-8">
-                                <h2 >{{name}}</h2>
-                                <p>{{description}}</p>
-                            </div>
-                        </div>
-                        <div class="col-md-12 panelBottom">
-                            <div class="col-md-4 text-center pull-right">
-                                <button data-product-id="{{{id}}}" class="btn btn-lg btn-add-to-cart js-product-add"><span class="glyphicon glyphicon-shopping-cart"></span>   Add to Cart</button>
-                            </div>
-                            <div class="col-md-4 text-right pull-right">
-                                <h5>Price <span class="itemPrice">{{price}}</span></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{/each}}
-    </script>
     <script src="scripts/assignment4.js"></script>
     <script src="scripts/handlebars-v4.0.10.js"></script>
     <script src="scripts/jquery-3.2.1.min.js"></script>
@@ -40,11 +11,21 @@
             /*
             *  Handlebar Templating for Products
             */
-            var source = $("#product-template").html();
-            var template = Handlebars.compile(source);
-            var context = {product : productList};
-            var html = template(context);
-            $("#productsRow").append(html);
+            var productSource = $("#product-template").html();
+            var productTemplate = Handlebars.compile(productSource);
+            var productContext = {product : productList};
+            var productHtml = template(productContext);
+            $("#productsRow").append(productHtml);
+            ////////////////////////////////////////////////////////////////////////////
+
+            /*
+            *  Handlebar Templating for Products
+            */
+            var shoppingCartSource = $("#shopping-cart-template").html();
+            var shoppingCartTemplate = Handlebars.compile(shoppingCartSource);
+            var shoppingCartContext = {shoppingCart : ShoppingCart.shoppingCart};
+            var shoppingCartHtml = template(shoppingCartContext);
+            $("#shoppingCartRow").append(shoppingCartHtml);
             ////////////////////////////////////////////////////////////////////////////
 
 
