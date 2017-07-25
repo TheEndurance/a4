@@ -37,7 +37,7 @@ function ValidatePostVariable($post_variable){
 
 if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
 
-    if (empty($_POST['json'])){
+    if (count(json_decode($_POST['json'],true))==0){
         $errors[]="No items in the shopping cart";
     } else {
         $shoppingcart = json_decode($_POST['json'],true);
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
     <div class="container">
         <div class="alert alert-dismissible alert-success">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>Order successful!</strong> View your order receipt below.
+            <strong>Order successful!</strong> View your order summary below.
         </div>
         <div class="well col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-1">
             <div class="row">
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
             </div>
             <div class="row">
                 <div class="text-center">
-                    <h1>Receipt</h1>
+                    <h1>Order Summary</h1>
                 </div>
             </div>
             <div class="row">

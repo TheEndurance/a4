@@ -148,12 +148,12 @@ var FormController = function (errorMessages) {
 
 window.onload = function () {
     var checkoutForm = document.getElementById("checkout-form");
-  //  checkoutForm.addEventListener('submit', FormController.ValidateSubmission, false);
+    checkoutForm.addEventListener('submit', FormController.ValidateSubmission, false);
 
-    //FormController.address.addEventListener('blur', FormController.ValidateField, false);
-//    FormController.name.addEventListener('blur', FormController.ValidateField, false);
-    //FormController.city.addEventListener('blur', FormController.ValidateField, false);
-    //FormController.province.addEventListener('blur', FormController.ValidateField, false);
-    //FormController.phone.addEventListener('blur', FormController.ValidateField, false);
-    //FormController.postal.addEventListener('blur', FormController.ValidateField, false);
+    FormController.address.addEventListener('blur', FormController.ValidateField, false);
+    FormController.name.addEventListener('blur', FormController.ValidateField, false);
+    FormController.city.addEventListener('blur', FormController.ValidateField, false);
+    FormController.province.addEventListener('blur', FormController.ValidateField, false);
+    FormController.phone.addEventListener('blur', FormController.ValidateField, false);
+    FormController.postal.addEventListener('blur', FormController.ValidateField, false);
 }
