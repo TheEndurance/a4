@@ -67,22 +67,4 @@ var ErrorUtilities = {
             focusElement.focus();
         }
     },
-
-    CapitilizeFirstLetters: function (str) {
-        "use strict";
-        if (typeof str == "string") {
-            return str.replace(/\b[a-z]{1}/g, function (letter) {
-                return letter.toUpperCase();
-            });
-        }
-    },
-
-    CapitilizeAllLetters: function (str) {
-        "Use strict";
-        if (typeof str == "string") {
-            return str.replace(/[a-z]+/g, function (word) {
-                return word.toUpperCase();
-            });
-        }
-    }
 }

@@ -111,6 +111,7 @@ var FormController = function (errorMessages) {
                     errorMessages.AddErrorMessage(key, errorMessages.ErrorDictionary[key]);
                     errorMessages.AddCompoundErrorMessage(errorMessages.ErrorDictionary[key]);
                     errorMessages.UpdateCompoundErrors();
+                    ErrorUtilities.FocusOnElement(key);
                 }
             }
         } catch (exception) {
