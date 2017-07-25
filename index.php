@@ -52,6 +52,13 @@ include('includes/header.html');
 
         <hr>
         <div id="checkout" class="well bs-component collapse">
+            <h2 id="error-title"></h2>
+            <div>
+                <ul id="compound-error-list">
+
+                </ul>
+            </div>
+            <hr>
             <form id="freelance-form" class="form-horizontal" action "#" method="POST">
                 <fieldset id="mandatory">
                     <legend>Checkout</legend>

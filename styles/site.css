@@ -51,3 +51,16 @@ span.itemPrice {
     font-size: 24px;
     color: #FA5B58;
 }
+
+footer { 
+    margin-top:50px;
+    border-top-color: rgb(78, 93, 108);
+    border-top-style: solid;
+    border-top-width: 1px;
+}
+/* error style */
+h2#error-title.text-danger{
+    border-bottom-color: red;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
