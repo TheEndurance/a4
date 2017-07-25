@@ -1,19 +1,19 @@
 <script id="product-template" type="text/x-handlebars-template">
     {{#each product}}
     <div id="{{id}}" class="col-md-4">
-        <div class="thumbnail">
-            <img class="img-responsive" src="{{{image}}}" alt="" />
+        <div class="thumbnail panel-styled">
+            <img class="img-responsive img-thumbnail" src="{{{image}}}" alt="" />
             <div class="caption">
                 <span class="pull-right itemPrice">${{price}}</span>
                 <h4><a href="#">{{name}}</a></h4>
                 <p>{{description}}</p>
             </div>
-            <div class="space-ten"></div>
+            <div class="panelTop"></div>
             <div class="btn-ground text-center">
                 <button data-product-id="{{id}}" class="btn btn-add-to-cart js-product-add"><span class="glyphicon glyphicon-shopping-cart"></span>   Add to Cart</button>
 
             </div>
-            <div class="space-ten"></div>
+            <div class="panelBottom"></div>
         </div>
     </div>
     {{/each}}

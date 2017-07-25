@@ -12,25 +12,21 @@
     display: block !important;
     width: 100% !important;
 }
-.ui-effects-transfer {
-    border: 1px dotted black;
-  }
 
 
 /*Site css  */
 
-.product_view .modal-dialog {
-    max-width: 800px;
-    width: 100%;
+.panel-styled {
+    background: #F4F2F3;
 }
 
-.pre-cost {
-    text-decoration: line-through;
-    color: #a5a5a5;
-}
-
-.space-ten {
+.panelBottom {
     padding: 10px 0;
+}
+
+.panelTop {
+    border-top: 1px solid #e7e7e7;
+    padding-top: 10px;
 }
 
 .btn-add-to-cart {
