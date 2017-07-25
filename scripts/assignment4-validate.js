@@ -105,7 +105,6 @@ var FormController = function (errorMessages) {
     var ValidateSubmission = function (e) {
         "use strict";
         var id = e.target.id;
-        console.log(id);
         try {
             for (var key in errorMessages.ErrorDictionary) {
                 if (document.forms[id][key].value == null || !errorMessages.ValidationRules[key].test(document.forms[id][key].value)) {
@@ -125,7 +124,7 @@ var FormController = function (errorMessages) {
     var ValidateField = function (e) {
         "use strict"
         var key = e.target.id;
-        if (!errorMessages.ValidationRules[key].test(document.forms["freelance-form"][key].value)) {
+        if (!errorMessages.ValidationRules[key].test(document.forms["checkout-form"][key].value)) {
             errorMessages.AddErrorMessage(key, errorMessages.ErrorDictionary[key]);
             errorMessages.AddCompoundErrorMessage(errorMessages.ErrorDictionary[key]);
         } else {
@@ -148,8 +147,8 @@ var FormController = function (errorMessages) {
 }(ErrorMessages);
 
 window.onload = function () {
-    var freelanceForm = document.getElementById("freelance-form");
-    freelanceForm.addEventListener('submit', FormController.ValidateSubmission, false);
+    var checkoutForm = document.getElementById("checkout-form");
+    checkoutForm.addEventListener('submit', FormController.ValidateSubmission, false);
 
     FormController.address.addEventListener('blur', FormController.ValidateField, false);
     FormController.name.addEventListener('blur', FormController.ValidateField, false);
@@ -157,7 +156,4 @@ window.onload = function () {
     FormController.province.addEventListener('blur', FormController.ValidateField, false);
     FormController.phone.addEventListener('blur', FormController.ValidateField, false);
     FormController.postal.addEventListener('blur', FormController.ValidateField, false);
-
-
-
 }

@@ -1,4 +1,12 @@
 $(document).ready(function () {
+
+    $("#checkout-form").submit(function (event) {
+        if (ErrorMessages.compoundErrorMessages.length === 0) {
+            var data = JSON.stringify(ShoppingCart.shoppingCart);
+            $('<input type="hidden" name="json"/>').val(data).appendTo('#checkout-form');
+        }
+    });
+
     /*
      * Common functions
      */
@@ -24,8 +32,7 @@ $(document).ready(function () {
 
     function UpdateProductTotal(productId, quantity) {
         var basePrice = ProductList.GetProductById(productId).price;
-        $("table#shoppingCart #total-price-" + productId).html("<strong>$" + (basePrice * quantity).toFixed(
-            2) + "</strong>");
+        $("table#shoppingCart #total-price-" + productId).html("<strong>$" + (basePrice * quantity).toFixed(2) + "</strong>");
     }
 
     function UpdateGrandTotal() {
