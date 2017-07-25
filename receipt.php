@@ -1,15 +1,75 @@
 <?php
 include('includes/header.html');
+$errors = array();
+
+$errorDictionary = array(
+    "postal-code" => "Incorrect postal code, acceptable formats are N2L 2S3 or N2L-2S3 or N2L2S3",
+    "phone-number" =>  "Incorrect phone number, acceptable formats are (999)-999-9999 or (999) 999 9999 or (999)9999999",
+    "name" =>  "The Name field is required",
+    "city" =>  "The City field is required",
+    "address" => "The Address field is required",
+    "province" => "The Province field is required"
+);
+
+$validationRules = array(
+    "postal-code" => "/^[A-Za-z]\d[A-Za-z][-\s]?\d[A-Za-z]\d$/",
+    "phone-number" => "/^[(]{1}[0-9]{3}[)]{1}[-\s]?[0-9]{3}[-\s]?[0-9]{4}$/",
+    "name" => "/.+/s",
+    "city" => "/.+/s",
+    "address" => "/.+/s",
+    "province" => "/.+/s"
+);
+
+function ValidatePostVariable($post_variable){
+    global $errorDictionary,$validationRules,$errors;
+    if (empty($_POST[$post_variable])){
+        $errors[]=$errorDictionary[$post_variable];
+    } else {
+        if(preg_match($validationRules[$post_variable],$_POST[$post_variable])!=1){ //Not valid
+            $errors[]=$errorDictionary[$post_variable]; 
+        } else {
+            return $_POST[$post_variable];
+        }
+    }
+    return null;
+}
+
 
 if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
-    $shoppingcart = json_decode($_POST['json'],true);
-    $grandTotal = $_POST['grand-total'];
-    $name = $_POST['name'];
-    $postalCode = $_POST['postal-code'];
-    $address = $_POST['address'];
-    $phone = $_POST['phone-number'];
-    $city = $_POST['city'];
-    $province = $_POST['province']
+
+    if (empty($_POST['json'])){
+        $errors[]="No items in the shopping cart";
+    } else {
+        $shoppingcart = json_decode($_POST['json'],true);
+        $grandTotal = $_POST['grand-total'];
+    }
+
+    $name = ValidatePostVariable('name'); 
+    $postalCode = ValidatePostVariable('postal-code');
+    $address = ValidatePostVariable('address');
+    $phone =ValidatePostVariable('phone-number');
+    $city = ValidatePostVariable('city');
+    $province = ValidatePostVariable('province');
+    if (count($errors)>0){ //errors found
+    ?>
+        <div class="container">
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Order unsuccessful!</strong> Please navigate back to the <a class="alert-link" href="index.php">previous page</a> and correct the following errors:
+            </div>
+            <div>
+                <ul id="compound-error-list">
+    <?php
+        foreach($errors as $error){
+            echo '<li>'. $error .'</li>' ;
+        }
+    ?>
+                </ul>
+            </div>
+        </div>
+    <?php
+    } else {
+    
 ?>
     <div class="container">
         <div class="alert alert-dismissible alert-success">
@@ -84,6 +144,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
         </div>
     </div>
 <?php
+    } // ELSE no errors
 } // END POST
 
 include('includes/footer.html');

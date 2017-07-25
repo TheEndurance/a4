@@ -67,3 +67,9 @@ h2#error-title.text-danger{
     border-bottom-style: solid;
     border-bottom-width: 1px;
 }
+
+#compound-error-list {
+    color:red;
+    font-size:1.3em;
+    font:bold;
+}
