@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
     $address = $_POST['address'];
     $phone = $_POST['phone-number'];
     $city = $_POST['city'];
+    $province = $_POST['province']
 ?>
     <div class="container">
         <div class="alert alert-dismissible alert-success">
@@ -23,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
                         <strong><?php echo $name ;?></strong><br>
                         <?php echo $address; ?><br>
                         <?php echo $city . ', ' . $postalCode; ?><br>
+                        <?php echo $province;?><br>
                         <span class="glyphicon glyphicon-phone"></span> <?php echo $phone ?>
                     </address>
                 </div>
@@ -61,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
                             <td class="col-sm-3 col-md-3" style="text-align: center"><?php echo $item['quantity'];?> </td>
                             <td class="col-sm-1 col-md-1 text-center"><strong>$<?php echo $item['product']['price'] ;?></strong></td>
                             <td class="col-sm-1 col-md-1 text-center"><strong>$<?php echo ($item['product']['price'] * $item['quantity']) ;?></strong></td>
-                            <td class="col-sm-1 col-md-1"></td>
                         </tr>
         <?php
         } // END For each
@@ -69,11 +70,10 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
                         <tr>
                             <td  class="col-sm-6 col-md-6"></td>
                             <td class="col-sm-3 col-md-3"></td>
-                            <td class="col-sm-1 col-md-1"></td>
                             <td class="col-sm-1 col-md-1">
                                 <h3>Total</h3>
                             </td>
-                            <td class="col-sm-1 col-md-1 text-right">
+                            <td class="col-sm-1 col-md-1">
                                 <h3 id="grand-total"><strong>$<?php echo $grandTotal;?></strong></h3>
                             </td>
                         </tr>
