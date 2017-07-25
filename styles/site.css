@@ -1,27 +1,36 @@
 /* bootstrap override */
+
 .navbar {
     border-radius: 0px !important;
 }
-.media-body{
-    padding-left:5px !important;
+
+.media-body {
+    padding-left: 5px !important;
 }
-.form-control{
-    display:block !important;
-    width:100% !important;
+
+.form-control {
+    display: block !important;
+    width: 100% !important;
 }
+.ui-effects-transfer {
+    border: 1px dotted black;
+  }
+
+
 /*Site css  */
 
-.panel.panel--styled {
-    background: #F4F2F3;
+.product_view .modal-dialog {
+    max-width: 800px;
+    width: 100%;
 }
 
-.panelTop {
-    padding: 10px;
+.pre-cost {
+    text-decoration: line-through;
+    color: #a5a5a5;
 }
 
-.panelBottom {
-    border-top: 1px solid #e7e7e7;
-    padding-top: 10px;
+.space-ten {
+    padding: 10px 0;
 }
 
 .btn-add-to-cart {
@@ -29,19 +38,20 @@
     color: #fff;
 }
 
-.btn.btn-add-to-cart.focus, .btn.btn-add-to-cart:focus, .btn.btn-add-to-cart:hover  {
-	color: #fff;   
+.btn.btn-add-to-cart.focus,
+.btn.btn-add-to-cart:focus,
+.btn.btn-add-to-cart:hover {
+    color: #fff;
     background: #FD7172;
-	outline: none;
+    outline: none;
 }
 
 .btn-add-to-cart:active {
-	background: #F9494B;
-	outline: none;
+    background: #F9494B;
+    outline: none;
 }
 
 span.itemPrice {
     font-size: 24px;
     color: #FA5B58;
 }
-

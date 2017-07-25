@@ -20,13 +20,13 @@ include('includes/header.html');
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
+                            <td  class="col-sm-6 col-md-6"></td>
+                            <td class="col-sm-3 col-md-3"></td>
+                            <td class="col-sm-1 col-md-1"></td>
+                            <td class="col-sm-1 col-md-1">
                                 <h3>Total</h3>
                             </td>
-                            <td class="text-right">
+                            <td class="col-sm-1 col-md-1 text-right">
                                 <h3 id="grand-total"><strong>$0.00</strong></h3>
                             </td>
                         </tr>
@@ -40,7 +40,7 @@ include('includes/header.html');
                                 </button>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#checkout"> Checkout
+                                <button id="go-checkout" type="button" class="btn btn-success" data-toggle="collapse" data-target="#checkout"> Checkout
                                     <span class="glyphicon glyphicon-play"></span>
                                 </button>
                             </td>
@@ -121,7 +121,6 @@ include('includes/header.html');
             </form>
         </div>
     </div>
-
 <?php
 include('includes/shopping-cart-template.html');
 include('includes/product-template.html');

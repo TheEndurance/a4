@@ -44,6 +44,7 @@ $(document).ready(function () {
      */
     $("#productsRow").on("click", "button.js-product-add", function () {
         var productId = $(this).attr("data-product-id");
+
         if (ShoppingCart.FindProductIndexById(productId) === -1) { //New product is added to the cart
             var cartItem = ShoppingCart.AddToCart(ProductList.GetProductById(productId));
             UpdateGrandTotal();
@@ -51,6 +52,10 @@ $(document).ready(function () {
         } else { //its not a new product
             IncrementQuantity(productId);
         }
+        $('html, body').animate({
+            scrollTop: $("table#shoppingCart").offset().top - 100
+        }, 'slow');
+
     })
     ////////////////////////////////////////////////////////////////////////////
 
@@ -74,15 +79,28 @@ $(document).ready(function () {
     /*
      *  Remove Product from shopping cart
      */
-    $("table#shoppingCart tbody").on("click","button.js-remove-product",function(){
+    $("table#shoppingCart tbody").on("click", "button.js-remove-product", function () {
         var productId = $(this).attr('data-product-id');
-        var tableRow = $("table#shoppingCart tbody tr#"+productId);
-        tableRow.fadeOut(500,function(){
+        var tableRow = $("table#shoppingCart tbody tr#" + productId);
+        tableRow.fadeOut(500, function () {
             tableRow.remove();
         });
         ShoppingCart.EmptyProductFromCartById(productId);
         UpdateGrandTotal();
     });
+    ////////////////////////////////////////////////////////////////////////////
+
+    /*
+     *  Checkout scroll down
+     */
+    $("#go-checkout").click(function () {
+        setTimeout(function () {
+            $("html, body").animate({
+                scrollTop: $(document).height()
+            }, "slow");
+        }, 200)
+
+    })
     ////////////////////////////////////////////////////////////////////////////
 
     /*
@@ -106,10 +124,9 @@ $(document).ready(function () {
         var shoppingCartContext = cartItem;
         var shoppingCartHtml = shoppingCartTemplate(shoppingCartContext);
         $(shoppingCartHtml).hide().prependTo("table#shoppingCart tbody").fadeIn(500);
-        
+
     }
     ////////////////////////////////////////////////////////////////////////////
-
 
 
 })
