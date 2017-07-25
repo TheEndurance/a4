@@ -2,6 +2,7 @@ var ProductList = function () {
     var productList = new Array();
 
     var AddProduct = function (product) {
+        "use strict";
         productList.push(product);
     }
     var GetProductById = function (id) {
