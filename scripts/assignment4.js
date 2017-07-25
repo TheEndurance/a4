@@ -103,7 +103,3 @@ var ShoppingCart = function () {
     }
 
 }();
-
-
-
-window.onload = function () {}

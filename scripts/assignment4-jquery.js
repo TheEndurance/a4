@@ -77,7 +77,7 @@ $(document).ready(function () {
     $("table#shoppingCart tbody").on("click","button.js-remove-product",function(){
         var productId = $(this).attr('data-product-id');
         var tableRow = $("table#shoppingCart tbody tr#"+productId);
-        tableRow.fadeOut("slow",function(){
+        tableRow.fadeOut(500,function(){
             tableRow.remove();
         });
         ShoppingCart.EmptyProductFromCartById(productId);
@@ -105,7 +105,8 @@ $(document).ready(function () {
         var shoppingCartTemplate = Handlebars.compile(shoppingCartSource);
         var shoppingCartContext = cartItem;
         var shoppingCartHtml = shoppingCartTemplate(shoppingCartContext);
-        $("table#shoppingCart tbody").prepend(shoppingCartHtml);
+        $(shoppingCartHtml).hide().prependTo("table#shoppingCart tbody").fadeIn(500);
+        
     }
     ////////////////////////////////////////////////////////////////////////////
 
