@@ -1,69 +1,5 @@
 <?php
 include('includes/header.html');
-
-if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
-    $shoppingcart = json_decode($_POST['json'],true);
-?>
-    <div class="container">
-        <div class="row" id="receiptRow">
-            <div class="col-sm-12 col-md-12">
-                <table id="receipt" class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th class="text-center">Price</th>
-                            <th class="text-center">Total</th>
-                            <th> </th>
-                        </tr>
-                    </thead>
-                    <tbody>                      
-    <?php
-    foreach($shoppingcart as $item){
-    ?>
-                    <tr>
-                        <td class="col-sm-6 col-md-6">
-                            <div class="media">
-                                <a class="thumbnail pull-left" href="#"> <img class="media-object" src="<?php echo $item['product']['image'] ;?>" style="width: 72px; height: 72px;"> </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading"><a href="#"><?php echo $item['product']['name'] ;?></a></h4>
-                                    <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="col-sm-3 col-md-3" style="text-align: center"><?php echo $item['quantity'];?> </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$<?php echo $item['product']['price'] ;?></strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$<?php echo ($item['product']['price'] * $item['quantity']) ;?></strong></td>
-                        <td class="col-sm-1 col-md-1"></td>
-                    </tr>
-    <?php
-    } // END For each
-?>
-                    <tr>
-                        <td  class="col-sm-6 col-md-6"></td>
-                        <td class="col-sm-3 col-md-3"></td>
-                        <td class="col-sm-1 col-md-1"></td>
-                        <td class="col-sm-1 col-md-1">
-                            <h3>Total</h3>
-                        </td>
-                        <td class="col-sm-1 col-md-1 text-right">
-                            <h3 id="grand-total"><strong>$0.00</strong></h3>
-                         </td>
-                    </tr>
-                    <tr>
-                         <td></td>
-                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-<?php
-} // END POST
 ?>
     <div class="container">
         <div class="row" id="productsRow">
@@ -91,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
                                 <h3>Total</h3>
                             </td>
                             <td class="col-sm-1 col-md-1 text-right">
-                                <h3 id="grand-total"><strong>$0.00</strong></h3>
+                                <h3 id="grand-total" data-grand-total="0.00"><strong>$0.00</strong></h3>
                             </td>
                         </tr>
                         <tr>
@@ -123,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
                 </ul>
             </div>
             <hr>
-            <form id="checkout-form" class="form-horizontal" action="index.php" method="POST">
+            <form id="checkout-form" class="form-horizontal" action="receipt.php" method="POST">
                 <fieldset id="mandatory">
                     <legend>Checkout</legend>
                     <div class="form-group">

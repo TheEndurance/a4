@@ -12,6 +12,9 @@
     display: block !important;
     width: 100% !important;
 }
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: rgba(24, 188, 156, 0.16);
+}
 
 
 /*Site css  */

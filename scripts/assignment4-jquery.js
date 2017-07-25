@@ -1,14 +1,7 @@
 $(document).ready(function () {
 
-    $("#checkout-form").submit(function (event) {
-        if (ErrorMessages.compoundErrorMessages.length === 0) {
-            var data = JSON.stringify(ShoppingCart.shoppingCart);
-            $('<input type="hidden" name="json"/>').val(data).appendTo('#checkout-form');
-        }
-    });
-
     /*
-     * Common functions
+     * Shopping cart common functions
      */
     function IncrementQuantity(productId) {
         var quantity = parseInt($("#quantity-" + productId).attr('value'), 10);
@@ -43,6 +36,7 @@ $(document).ready(function () {
             total += (basePrice * quantity)
         }
         $("table#shoppingCart #grand-total").html("<strong>$" + (total).toFixed(2) + "</strong>")
+        $("table#shoppingCart #grand-total").attr("data-grand-total",(total).toFixed(2));
     }
     ////////////////////////////////////////////////////////////////////////////
 
@@ -111,6 +105,19 @@ $(document).ready(function () {
     ////////////////////////////////////////////////////////////////////////////
 
     /*
+     * Append Hidden Field for shopping cart JSON
+     */
+    $("#checkout-form").submit(function (event) {
+        if (ErrorMessages.compoundErrorMessages.length === 0) {
+            var data = JSON.stringify(ShoppingCart.shoppingCart);
+            var grandTotal = $("table#shoppingCart #grand-total").attr("data-grand-total");
+            $('<input type="hidden" name="json"/>').val(data).appendTo('#checkout-form');
+            $('<input type="hidden" name="grand-total"/>').val(grandTotal).appendTo('#checkout-form');
+        }
+    });
+    ////////////////////////////////////////////////////////////////////////////
+
+    /*
      *  Handlebar Templating for Products
      */
     var productSource = $("#product-template").html();
@@ -131,7 +138,6 @@ $(document).ready(function () {
         var shoppingCartContext = cartItem;
         var shoppingCartHtml = shoppingCartTemplate(shoppingCartContext);
         $(shoppingCartHtml).hide().prependTo("table#shoppingCart tbody").fadeIn(500);
-
     }
     ////////////////////////////////////////////////////////////////////////////
 
