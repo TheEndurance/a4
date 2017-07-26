@@ -218,7 +218,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
                 </div>
             </div>
             <div class="row">
-                <h3 class="text-center">Estimated Delivery Date: <?php echo $deliveryTime; ?></h3>
+                <h3 class="text-center">Estimated Delivery Time: <?php echo $deliveryTime; ?></h3>
             </div>
         </div>
     </div>
