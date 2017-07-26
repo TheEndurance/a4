@@ -8,7 +8,7 @@ $(document).ready(function () {
         $("#quantity-" + productId).attr('value', quantity + 1);
         ShoppingCart.AddToCart(ProductList.GetProductById(productId));
         UpdateProductTotal(productId, quantity + 1);
-        UpdateGrandTotal();
+        UpdateSubTotal();
     }
 
     function DecrementQuantity(productId) {
@@ -17,7 +17,7 @@ $(document).ready(function () {
             $("#quantity-" + productId).attr('value', quantity - 1);
             ShoppingCart.RemoveFromCart(ProductList.GetProductById(productId));
             UpdateProductTotal(productId, quantity - 1);
-            UpdateGrandTotal();
+            UpdateSubTotal();
             return true;
         }
         return false;
@@ -28,15 +28,15 @@ $(document).ready(function () {
         $("table#shoppingCart #total-price-" + productId).html("<strong>$" + (basePrice * quantity).toFixed(2) + "</strong>");
     }
 
-    function UpdateGrandTotal() {
+    function UpdateSubTotal() {
         var total = 0;
         for (var i = 0; i < ShoppingCart.shoppingCart.length; i++) {
             var basePrice = ShoppingCart.shoppingCart[i].product.price;
             var quantity = parseInt(ShoppingCart.shoppingCart[i].quantity);
             total += (basePrice * quantity)
         }
-        $("table#shoppingCart #grand-total").html("<strong>$" + (total).toFixed(2) + "</strong>")
-        $("table#shoppingCart #grand-total").attr("data-grand-total",(total).toFixed(2));
+        $("table#shoppingCart #sub-total").html("<strong>$" + (total).toFixed(2) + "</strong>")
+        $("table#shoppingCart #sub-total").attr("data-sub-total",(total).toFixed(2));
     }
     ////////////////////////////////////////////////////////////////////////////
 
@@ -48,7 +48,7 @@ $(document).ready(function () {
 
         if (ShoppingCart.FindProductIndexById(productId) === -1) { //New product is added to the cart
             var cartItem = ShoppingCart.AddToCart(ProductList.GetProductById(productId));
-            UpdateGrandTotal();
+            UpdateSubTotal();
             HandleBarProductTemplate(cartItem);
         } else { //its not a new product
             IncrementQuantity(productId);
@@ -87,7 +87,7 @@ $(document).ready(function () {
             tableRow.remove();
         });
         ShoppingCart.EmptyProductFromCartById(productId);
-        UpdateGrandTotal();
+        UpdateSubTotal();
     });
     ////////////////////////////////////////////////////////////////////////////
 
@@ -110,9 +110,9 @@ $(document).ready(function () {
     $("#checkout-form").submit(function (event) {
         if (ErrorMessages.compoundErrorMessages.length === 0) {
             var data = JSON.stringify(ShoppingCart.shoppingCart);
-            var grandTotal = $("table#shoppingCart #grand-total").attr("data-grand-total");
+            var SubTotal = $("table#shoppingCart #sub-total").attr("data-sub-total");
             $('<input type="hidden" name="json"/>').val(data).appendTo('#checkout-form');
-            $('<input type="hidden" name="grand-total"/>').val(grandTotal).appendTo('#checkout-form');
+            $('<input type="hidden" name="sub-total"/>').val(SubTotal).appendTo('#checkout-form');
         }
     });
     ////////////////////////////////////////////////////////////////////////////

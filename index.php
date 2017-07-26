@@ -27,7 +27,7 @@ include('includes/header.html');
                                 <h3>Total</h3>
                             </td>
                             <td class="col-sm-1 col-md-1 text-right">
-                                <h3 id="grand-total" data-grand-total="0.00"><strong>$0.00</strong></h3>
+                                <h3 id="sub-total" data-sub-total="0.00"><strong>$0.00</strong></h3>
                             </td>
                         </tr>
                         <tr>
@@ -106,7 +106,7 @@ include('includes/header.html');
                                 <option>British Columbia</option>
                                 <option>Alberta</option>
                                 <option>Saskatchewan</option>
-                                <option>Manitobia</option>
+                                <option>Manitoba</option>
                                 <option>Quebec</option>
                                 <option>Newfoundland and Labrador</option>
                                 <option>Nova Scotia</option>
