@@ -50,8 +50,6 @@ function ValidatePostVariable($post_variable){
     return null;
 }
 
-
-
 if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
 
     if (count(json_decode($_POST['json'],true))==0){
@@ -69,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
     $province = ValidatePostVariable('province');
     $shippingCost = 0.00;
     $deliveryTime ="";
-    
+
     if(count($errors)==0){
         if($subTotal >=0.01 && $subTotal <=25.00){
             $shippingCost = 3.00;

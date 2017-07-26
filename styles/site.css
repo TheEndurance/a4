@@ -35,6 +35,13 @@ footer {
     background-color: rgba(24, 188, 156, 0.16);
 }
 
+.row > .col-md-4:nth-child(3n+1) {
+    clear: both;
+}
+.row > .col-sm-4:nth-child(3n+1) {
+    clear: both;
+}
+
 
 /* product-template */
 
@@ -68,10 +75,14 @@ footer {
 }
 
 .name {
-    font-size: 17px;
     text-transform: uppercase;
     margin-bottom: 15px;
     letter-spacing: 0;
+}
+.info {
+  font-size: 14px;
+  color: #969696;
+  margin-bottom: 10px;
 }
 
 .description {

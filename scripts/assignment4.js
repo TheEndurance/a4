@@ -85,13 +85,14 @@ function CreateId(name) {
 }
 
 // Product Class
-function Product(brand,name, price, image, description) {
+function Product(brand,name, price, image, description,info) {
     //public properties (this)
     this.brand=brand;
     this.name = name;
     this.price = price;
     this.image = image;
     this.description = description
+    this.info = info;
 
     this.id = CreateId(this.name);
 }
@@ -103,12 +104,12 @@ function CartItem(product, quantity) {
     this.quantity = quantity;
 }
 
-var chuckClassic = new Product("Converse","Chuck Taylor All Star Classic Colours" ,49.99, "images/chuck_classic.jpg", "Color: Red / Style: M9621C");
-var chuckNeonFlora = new Product("Converse","Chuck Taylor All Star Neon Floral" ,39.99, "images/chuck_neon_floral.jpg", "Color: Black/White/Aegean Aqua / Style: 654210C");
-var chuckNeon = new Product("Converse","Chuck Taylor All Star II Neon" ,79.99, "images/chuck_neon.jpg", "Color: Teal/Navy/White / Style: 151116C");
-var nikeAirforce = new Product("Nike","Air Force 1 07 HIGH LV8" ,49.99, "images/nike_airforce.jpg", "Color: Black/Summit White / Style: 806403-006");
-var nikeFlyKnit = new Product("Nike","Roshe Two Flyknit V2" ,49.99, "images/nike_flyknit.jpg", "Color: Dark Grey/Cool Grey / Style: 918263-001");
-var nikeJordan = new Product("Nike","Jordan Spizike" ,179.99, "images/nike_jordan.jpg", "Color: White/Cement Grey / Style: 315371-122");
+var chuckClassic = new Product("Converse","Chuck Taylor All Star Classic Colours" ,49.99, "images/chuck_classic.jpg", "Color: Red", "Style: M9621C");
+var chuckNeonFlora = new Product("Converse","Chuck Taylor All Star Neon Floral" ,24.99, "images/chuck_neon_floral.jpg", "Color: Black/White/Aegean Aqua", "Style: 654210C");
+var chuckNeon = new Product("Converse","Chuck Taylor All Star II Neon" ,79.99, "images/chuck_neon.jpg", "Color: Teal/Navy/White","Style: 151116C");
+var nikeAirforce = new Product("Nike","Air Force 1 07 HIGH LV8" ,129.99, "images/nike_airforce.jpg", "Color: Black/Summit White","Style: 806403-006");
+var nikeFlyKnit = new Product("Nike","Roshe Two Flyknit V2" ,69.99, "images/nike_flyknit.jpg", "Color: Dark Grey/Cool Grey","Style: 918263-001");
+var nikeJordan = new Product("Nike","Jordan Spizike" ,179.99, "images/nike_jordan.jpg", "Color: White/Cement Grey","Style: 315371-122");
 
 
 
