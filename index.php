@@ -6,6 +6,7 @@ include('includes/header.html');
 
         </div>
         <hr>
+        <hr>
         <div class="row" id="shoppingCartRow">
             <div class="col-sm-12 col-md-12">
                 <table id="shoppingCart" class="table table-responsive">

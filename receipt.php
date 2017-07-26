@@ -69,31 +69,33 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){ // POST
     $province = ValidatePostVariable('province');
     $shippingCost = 0.00;
     $deliveryTime ="";
+    
+    if(count($errors)==0){
+        if($subTotal >=0.01 && $subTotal <=25.00){
+            $shippingCost = 3.00;
+            $subTotal = $subTotal + $shippingCost ;
+            $deliveryTime = "1 day";
+        } elseif($subTotal >=25.01 && $subTotal <=50.00){
+            $shippingCost = 4.00;
+            $subTotal = $subTotal + $shippingCost;
+            $deliveryTime = "1 day";
+        } elseif($subTotal >=50.01 && $subTotal <=75.00){
+            $shippingCost = 5.00;
+            $subTotal = $subTotal + $shippingCost;
+            $deliveryTime = "3 days";
+        } elseif($subTotal >75.00){
+            $shippingCost = 6.00;
+            $subTotal = $subTotal + $shippingCost;
+            $deliveryTime = "4 days";
+        }
 
-    if($subTotal >=0.01 && $subTotal <=25.00){
-        $shippingCost = 3.00;
-        $subTotal = $subTotal + $shippingCost ;
-        $deliveryTime = "1 day";
-    } elseif($subTotal >=25.01 && $subTotal <=50.00){
-         $shippingCost = 4.00;
-        $subTotal = $subTotal + $shippingCost;
-        $deliveryTime = "1 day";
-    } elseif($subTotal >=50.01 && $subTotal <=75.00){
-        $shippingCost = 5.00;
-        $subTotal = $subTotal + $shippingCost;
-        $deliveryTime = "3 days";
-    } elseif($subTotal >75.00){
-        $shippingCost = 6.00;
-        $subTotal = $subTotal + $shippingCost;
-        $deliveryTime = "4 days";
-    }
-
-    if (strlen($province)>0){
-        $tax = $salesTax[$province] * $subTotal; 
-        $grandTotal = $tax + $subTotal;
-    } else {
-        $tax = 0.00;
-        $grandTotal = $subTotal;
+        if (strlen($province)>0){
+            $tax = $salesTax[$province] * $subTotal; 
+            $grandTotal = $tax + $subTotal;
+        } else {
+            $tax = 0.00;
+            $grandTotal = $subTotal;
+        }
     }
     
     if (count($errors)>0){ //errors found

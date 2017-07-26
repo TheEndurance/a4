@@ -1,20 +1,20 @@
 <script id="product-template" type="text/x-handlebars-template">
     {{#each product}}
-    <div id="{{id}}" class="col-md-4">
-        <div class="thumbnail panel-styled">
-            <img class="img-responsive img-thumbnail" src="{{{image}}}" alt="" />
-            <div class="caption">
-                <span class="pull-right itemPrice">${{price}}</span>
-                <h4><a href="#">{{name}}</a></h4>
-                <p>{{description}}</p>
-            </div>
-            <div class="panelTop"></div>
-            <div class="btn-ground text-center">
-                <button data-product-id="{{id}}" class="btn btn-add-to-cart js-product-add"><span class="glyphicon glyphicon-shopping-cart"></span>   Add to Cart</button>
-            </div>
-            <div class="panelBottom"></div>
+    <div id="{{id}}" class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-sm-offset-2 col-xs-offset-2 block">
+        <div class="top">
+            <a href="#"><span class="product-brand">{{brand}}</span></a>
+        </div>
+        <div class="middle">
+            <img class="img-responsive" src="{{image}}" alt="{{name}}" />
+        </div>
+        <div class="text-center">
+            <div class="name">{{name}}</div>
+            <div class="description">{{description}}</div>
+            <div class="item-price">${{price}}</div>
+        </div>
+        <div class="btn-ground text-center">
+            <button data-product-id="{{id}}" class="btn btn-add-to-cart js-product-add"><span class="glyphicon glyphicon-shopping-cart"></span>   Add to Cart</button>
         </div>
     </div>
     {{/each}}
-
 </script>
